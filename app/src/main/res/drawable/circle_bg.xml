@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval"> <!-- Tạo hình oval (hình tròn nếu width = height) -->
+        <solid android:color="#80808080"/>
+        <size
+            android:width="32dp"
+            android:height="32dp" />
+    </shape>
+
+</item>
+</selector>

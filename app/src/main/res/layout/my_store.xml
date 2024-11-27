@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/store_inactive"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/frag_store"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <include layout="@layout/bar_navigation_icon"/>
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/business" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="319dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="40dp"
+                android:text="You Don’t Have a Store"
+                android:textStyle="bold"
+                android:textSize="25dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCre"
+                android:layout_width="239dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/login_bg"
+                android:text="Create Store"
+                android:textColor="@color/White" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

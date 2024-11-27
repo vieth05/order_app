@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Màu khi RadioButton được chọn -->
+    <item android:color="@color/green_dam" android:state_checked="true" />
+    <!-- Màu khi RadioButton không được chọn -->
+    <item android:color="@color/Yellow" android:state_checked="false" />
+</selector>

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">order_app</string>
+    <string name="signup_login">Don’t have an account? <b>Sign up</b></string>
+    <string name="signup_acc">Have an account ? <b>Sign up</b></string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis. Non commodo, a justo massa porttitor sed placerat in. Orci tristique etiam tempus sed. Mi varius morbi egestas dictum tempor nisl. In</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_ob1"><![CDATA[Empowering Artisans,\nFarmers & Micro Business]]></string>
+    <string name="text_ob2">Connecting NGOs, Social Enterprises with Communities</string>
+    <string name="text_ob3"><![CDATA[Donate, Invest & Support infrastructure projects]]></string>
+</resources>

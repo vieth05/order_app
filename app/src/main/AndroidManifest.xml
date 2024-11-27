@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Order_app"
+        tools:targetApi="31">
+        <activity android:name="com.example.activity_introduce.onboarding2" />
+        <activity android:name="com.example.activity_introduce.Onboarding1" />
+        <activity android:name="com.example.activity_introduce.onboarding3" />
+        <activity android:name="com.example.activity_auth.login"/>
+        <activity android:name="com.example.activity_auth.signup" />
+        <activity android:name="com.example.activity_auth.otp_ver" />
+        <activity android:name="com.example.activity_auth.sendotp" />
+        <activity android:name="com.example.product_Detail.beverages" />
+        <activity android:name="com.example.product_Detail.BreadAndBakeryActivity" />
+        <activity android:name="com.example.product_Detail.Egg" />
+        <activity android:name="com.example.product_Detail.FrozenVegetablesActivity" />
+        <activity android:name="com.example.product_Detail.Fruit" />
+        <activity android:name="com.example.product_Detail.HomeCare" />
+        <activity android:name="com.example.product_Detail.PetCare" />
+        <activity android:name="com.example.product_Detail.ProductDetail" />
+        <activity android:name="com.example.product_Detail.Vegetables" />
+        <activity android:name="com.example.activity_checkout.checkout_cart" />
+        <activity android:name="com.example.activity_checkout.add_address" />
+        <activity android:name="com.example.activity_checkout.payment_option" />
+        <activity android:name="com.example.activity_checkout.add_cart" />
+        <activity android:name="com.example.activity_checkout.order_success" />
+        <activity android:name=".Wishlist" />
+        <activity android:name="com.example.activity_createstore.createstore" />
+
+        <activity
+            android:name="com.example.Activity.MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

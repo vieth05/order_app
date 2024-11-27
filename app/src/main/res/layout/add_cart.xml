@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<include
+    android:id="@+id/navi"
+    layout="@layout/bars_navigation_none"/>
+
+    <ImageView
+        android:id="@+id/img_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        app:srcCompat="@drawable/mastercard" />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/white_bg"
+        android:layout_weight="0.8"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/LightGrey"
+            android:text="Card Number" />
+
+        <EditText
+            android:id="@+id/cardnumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textStyle="bold"
+            android:inputType="number"
+            android:text="" />
+        <TextView
+        android:id="@+id/textView120"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/LightGrey"
+        android:text="Name" />
+
+        <EditText
+            android:id="@+id/name_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:textStyle="bold"
+            android:inputType="number"
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textView1120"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/LightGrey"
+                    android:text="Expires Dates" />
+
+                <EditText
+                    android:id="@+id/expire_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textStyle="bold"
+                    android:inputType="number"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textVie1w120"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/green_dam"
+                    android:text="CVC" />
+
+                <EditText
+                    android:id="@+id/name_c1ard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:textStyle="bold"
+                    android:inputType="number"
+                    android:backgroundTint="@color/green_dam"
+                    android:text="***" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="@drawable/white_bg">
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/login_bg"
+            android:id="@+id/btn_pay"
+            android:layout_width="320dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:clickable="true"
+            android:text="Add Credit Card"
+            android:textSize="18dp"
+            android:textColor="@color/White"/>
+    </FrameLayout>
+
+</LinearLayout>
