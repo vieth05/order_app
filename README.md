@@ -1,5 +1,4 @@
-link video demo:
-
+link video demo:   https://www.youtube.com/watch?v=47DurdlhGtU
 
 
 This app was developed during my learning and research journey in Kotlin Android, with the following key highlights:
