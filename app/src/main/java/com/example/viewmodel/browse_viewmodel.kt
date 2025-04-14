@@ -9,13 +9,10 @@ import com.example.model.browse_repo
 
 class browse_viewmodel: ViewModel() {
     private val repository = browse_repo()
-
     private val _productList = MutableLiveData<List<Product>>()
     val productList: LiveData<List<Product>> get() = _productList
-
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
-
     fun fetchProducts() {
         _isLoading.value = true
         repository.fetchProducts(

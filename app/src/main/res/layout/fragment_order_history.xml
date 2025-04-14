@@ -36,46 +36,17 @@
                     android:layout_width="117dp"
                     android:layout_height="30dp"
                     android:background="@drawable/day"
-                    android:text="Januari 2020"
+                    android:text="December 2024"
                     android:textAllCaps="false"
                     android:textColor="@color/green_dam"
                     />
             </LinearLayout>
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:paddingHorizontal="20dp"
+                android:id="@+id/recycler_orderhistory"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingVertical="20dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/deliver"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp">
-                    <include layout="@layout/vhd_delivered" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp">
-                    <include layout="@layout/vhd_order_place" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="6dp">
-                    <include layout="@layout/vhd_payment" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <include layout="@layout/vhd_process" />
-                </LinearLayout>
-            </LinearLayout>
+                android:layout_height="match_parent" />
 
 
         </LinearLayout>

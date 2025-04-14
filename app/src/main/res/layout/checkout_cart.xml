@@ -58,10 +58,10 @@
 
                 <TextView
                     android:id="@+id/textView41"
-                    android:textSize="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Price (1 item)"/>
+                    android:text="Price (1 item)"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_marginTop="10dp"

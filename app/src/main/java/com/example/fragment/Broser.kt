@@ -33,7 +33,6 @@ class BrowserFragment : Fragment(R.layout.browser) {
     ): View {
         _binding = BrowserBinding.inflate(inflater, container, false)
         val view = binding.root
-
         binding.navi.barTitle.text = "browse"
         binding.navi.notice.visibility = View.GONE
 

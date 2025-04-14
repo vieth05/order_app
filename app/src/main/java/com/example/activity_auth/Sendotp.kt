@@ -16,6 +16,5 @@ class sendotp:AppCompatActivity()
             val intent: Intent=Intent(applicationContext, otp_ver::class.java)
             startActivity(intent)
         }
-
     }
 }

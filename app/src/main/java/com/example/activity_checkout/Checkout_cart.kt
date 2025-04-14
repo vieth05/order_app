@@ -23,7 +23,6 @@ import com.example.Datarepo.mycart_data
 class checkout_cart : AppCompatActivity() {
     @SuppressLint("WrongViewCast", "MissingInflatedId")
     private lateinit var launcher: ActivityResultLauncher<Intent>
-    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

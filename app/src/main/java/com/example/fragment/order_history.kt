@@ -9,36 +9,39 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.activity_checkout.checkout_cart
 import com.example.activity_checkout.order_success
+import com.example.adapter.adapter_ordeerhistory
 import com.example.order_app.R
 import com.example.order_app.Wishlist
+import com.example.order_app.databinding.FragmentOrderHistoryBinding
+import com.example.viewmodel.order_history_viewmodel
 
-class order_history : Fragment(R.layout.fragment_order_history) {
-
+class order_history : Fragment() {
+    private lateinit var binding: FragmentOrderHistoryBinding
+    private lateinit var viewModel: order_history_viewmodel
+    private lateinit var adapter: adapter_ordeerhistory
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+         binding= FragmentOrderHistoryBinding.inflate(layoutInflater, container, false)
+        viewModel = ViewModelProvider(this).get(order_history_viewmodel::class.java)
+        adapter= adapter_ordeerhistory(mutableListOf())
+        binding.recyclerOrderhistory.adapter=adapter
+        binding.recyclerOrderhistory.layoutManager = LinearLayoutManager(requireContext())
 
-          val inflater=inflater.inflate(R.layout.fragment_order_history, container, false)
-          val title=inflater.findViewById<TextView>(R.id.bar_title)
-          title.text="Order History"
+        viewModel.itemList.observe(viewLifecycleOwner) { items ->
+            adapter.updateData(items)
 
-        val wl=inflater.findViewById<ImageView>(R.id.wish_icon)
-        wl.setOnClickListener{
-            startActivity(Intent(requireContext(), Wishlist::class.java))
         }
-        val od=inflater.findViewById<ImageView>(R.id.order)
-        od.setOnClickListener{
-            startActivity(Intent(requireContext(), checkout_cart::class.java))
-        }
+        viewModel.fetchItems()
 
-        val deliv=inflater.findViewById<LinearLayout>(R.id.deliver)
-        deliv.setOnClickListener{
-            val intent=Intent(requireContext(), order_success::class.java)
-            startActivity(intent)
-        }
-          return inflater
+        return binding.root
     }
+
+
 }

@@ -120,7 +120,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/txt_price_old"
+                        android:id="@+id/sales"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
