@@ -12,11 +12,17 @@ import com.example.fragment.order_history
 import com.example.fragment.profile
 import com.example.order_app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.AdView
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        MobileAds.initialize(this)
+        val adView = findViewById<AdView>(R.id.adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
         val home_frm= HomeFragment()
         val store_frm=MyStoreFragment()
         val brose_frm= BrowserFragment()
@@ -55,6 +61,4 @@ class MainActivity : AppCompatActivity() {
             replace(R.id.fragment_container,fragment)
             commit()
         }
-
-
 }
