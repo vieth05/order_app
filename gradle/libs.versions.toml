@@ -16,6 +16,7 @@ firebaseStorage = "21.0.1"
 firebaseConfigKtx = "22.0.1"
 firebaseConfigKtxVersion = "22.1.1"
 playServicesAdsApi = "24.2.0"
+mediationTestSuite = "3.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -32,6 +33,7 @@ firebase-storage = { group = "com.google.firebase", name = "firebase-storage", v
 firebase-config-ktx = { group = "com.google.firebase", name = "firebase-config-ktx", version.ref = "firebaseConfigKtx" }
 google-firebase-config-ktx = { group = "com.google.firebase", name = "firebase-config-ktx", version.ref = "firebaseConfigKtxVersion" }
 play-services-ads-api = { group = "com.google.android.gms", name = "play-services-ads-api", version.ref = "playServicesAdsApi" }
+mediation-test-suite = { group = "com.google.android.ads", name = "mediation-test-suite", version.ref = "mediationTestSuite" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -4,57 +4,43 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.activity_createstore.MyStoreActiveFragment
 import com.example.fragment.*
 import com.example.order_app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.gms.ads.*
-import com.google.android.gms.ads.interstitial.InterstitialAd
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.example.admob.Manage_ad
 
 class MainActivity : AppCompatActivity() {
-
-    private var mInterstitialAd: InterstitialAd? = null
+    private var countAd: Int =0;
     private lateinit var bottomNavigationView: BottomNavigationView
     private var usernameFromIntent: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        initAds()
+        Manage_ad.initMobileAds(this)
+        Manage_ad.loadBannerAd(findViewById(R.id.adView))
+        Manage_ad.loadAndShowInterstitial(this)
         initViews()
         handleIntentData()
         setupBottomNav()
+        observeAppLifecycle()
     }
 
-    // Khởi tạo Google Mobile Ads
-    private fun initAds() {
-        MobileAds.initialize(this)
-        loadBannerAd()
-        loadInterstitialAd()
-    }
-
-    // Load quảng cáo banner
-    private fun loadBannerAd() {
-        val adView = findViewById<AdView>(R.id.adView)
-        val adRequest = AdRequest.Builder().build()
-        adView.loadAd(adRequest)
-    }
-
-    // Load quảng cáo Interstitial
-    private fun loadInterstitialAd() {
-        val adRequest = AdRequest.Builder().build()
-        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdLoaded(ad: InterstitialAd) {
-                    mInterstitialAd = ad
-                    mInterstitialAd?.show(this@MainActivity)
+    private fun observeAppLifecycle() {
+        if(countAd!=0)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(
+            LifecycleEventObserver { _, event ->
+                if (event == Lifecycle.Event.ON_START) {
+                    Manage_ad.loadAndShowInterstitial(this)
                 }
-            })
+            }
+        )
+        countAd++;
     }
-
-    // Gán ID view và dữ liệu intent
     private fun initViews() {
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         usernameFromIntent = intent.getStringExtra("namme")
@@ -75,17 +61,17 @@ class MainActivity : AppCompatActivity() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.store -> {
-                    if (usernameFromIntent != null) {
-                        findViewById<TextView>(R.id.title_name)?.text = usernameFromIntent
-                        setFragment(MyStoreActiveFragment())
-                    } else {
                         setFragment(MyStoreFragment())
-                    }
                 }
                 R.id.home -> setFragment(HomeFragment())
                 R.id.browse ->{
-
                     setFragment(BrowserFragment())
+                    if(countAd==1 || countAd %5 ==0)
+                    {
+                        Manage_ad.loadAndShowInterstitial(this)
+                    }
+                    countAd++;
+
                 }
                 R.id.order -> setFragment(order_history())
                 R.id.prf -> setFragment(profile())
@@ -93,8 +79,6 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
-
-    // Hàm thay fragment
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
