@@ -5,60 +5,99 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.activity_createstore.MyStoreActiveFragment
-import com.example.fragment.BrowserFragment
-import com.example.fragment.HomeFragment
-import com.example.fragment.MyStoreFragment
-import com.example.fragment.order_history
-import com.example.fragment.profile
+import com.example.fragment.*
 import com.example.order_app.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.*
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+
 class MainActivity : AppCompatActivity() {
+
+    private var mInterstitialAd: InterstitialAd? = null
+    private lateinit var bottomNavigationView: BottomNavigationView
+    private var usernameFromIntent: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        initAds()
+        initViews()
+        handleIntentData()
+        setupBottomNav()
+    }
+
+    // Khởi tạo Google Mobile Ads
+    private fun initAds() {
         MobileAds.initialize(this)
+        loadBannerAd()
+        loadInterstitialAd()
+    }
+
+    // Load quảng cáo banner
+    private fun loadBannerAd() {
         val adView = findViewById<AdView>(R.id.adView)
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
-        val home_frm= HomeFragment()
-        val store_frm=MyStoreFragment()
-        val brose_frm= BrowserFragment()
-        val oh_frm=order_history()
-        val prf=profile()
-        val kt=intent.getStringExtra("namme")
-        if(kt != null){
-            set_frm(MyStoreActiveFragment())
-            val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+    }
+
+    // Load quảng cáo Interstitial
+    private fun loadInterstitialAd() {
+        val adRequest = AdRequest.Builder().build()
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdLoaded(ad: InterstitialAd) {
+                    mInterstitialAd = ad
+                    mInterstitialAd?.show(this@MainActivity)
+                }
+            })
+    }
+
+    // Gán ID view và dữ liệu intent
+    private fun initViews() {
+        bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        usernameFromIntent = intent.getStringExtra("namme")
+    }
+
+    // Xử lý dữ liệu từ intent khi mở app
+    private fun handleIntentData() {
+        if (usernameFromIntent != null) {
+            setFragment(MyStoreActiveFragment())
             bottomNavigationView.selectedItemId = R.id.store
+        } else {
+            setFragment(HomeFragment())
         }
-        else set_frm(home_frm)
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+    }
+
+    // Xử lý điều hướng bottom nav
+    private fun setupBottomNav() {
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.store ->
-                {
-                    if(kt != null){ val ti=findViewById<TextView>(R.id.title_name)
-                        ti.text=kt
-                        set_frm(MyStoreActiveFragment())
+                R.id.store -> {
+                    if (usernameFromIntent != null) {
+                        findViewById<TextView>(R.id.title_name)?.text = usernameFromIntent
+                        setFragment(MyStoreActiveFragment())
+                    } else {
+                        setFragment(MyStoreFragment())
                     }
-                    else set_frm(store_frm)
                 }
-                R.id.home -> set_frm(home_frm)
-                R.id.browse -> set_frm(brose_frm)
+                R.id.home -> setFragment(HomeFragment())
+                R.id.browse ->{
 
-
-                R.id.order -> set_frm(oh_frm)
-                R.id.prf -> set_frm(prf)
+                    setFragment(BrowserFragment())
+                }
+                R.id.order -> setFragment(order_history())
+                R.id.prf -> setFragment(profile())
             }
             true
         }
     }
-    private fun set_frm(fragment: Fragment)=
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container,fragment)
-            commit()
-        }
+
+    // Hàm thay fragment
+    private fun setFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
 }
